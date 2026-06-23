@@ -1,8 +1,12 @@
+/* ==========================================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS (PADRÃO MOBILE)
+   ========================================================================== */
 :root {
-  --primary: #0b5f87; /*#0b5f87,#083a52*/
+  --primary: #0b5f87;   /* #0b5f87, #083a52 */
   --secondary: #1aa6b7;
-  --dark:#187ba2; /*#2980b9,#083a52*/
-  --light: #eaf6fb; /*#eaf6fb,#083a52*/
+  --dark: #083a52;      /* Ajustado para um tom mais escuro para contraste de texto */
+  --light: #0b5f87;     /* Alterado para fundir perfeitamente com o fundo da sua logo */
+  --bg-cards: #eaf6fb;  /* Nova variável para o fundo claro sutil onde for necessário */
   --success: #22c55e;
 }
 
@@ -15,105 +19,213 @@
 
 body {
   background: var(--light);
-  color: var(--dark);
+  color: white; /* Texto geral claro, já que o fundo agora é escuro */
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-/* Alinha o texto e a imagem dentro da div logo */
+/* Imagens fluidas para nunca quebrarem o layout */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   2. COMPONENTES E ELEMENTOS (BASE MOBILE-FIRST)
+   ========================================================================== */
+
+/* LOGO */
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Cria um espaçamento automático entre o escudo e o texto */
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* Controla o tamanho do escudo sem distorcer */
 .escudo-logo {
-    height: 28px; /* Defina a altura que preferir para combinar com o tamanho da sua fonte */
-    width: auto;  /* Mantém a proporção original da imagem */
+  height: 28px;
+  width: auto;
 }
 
 /* HEADER */
 .header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; /* Empilha logo e menu no celular */
+  align-items: center;
+  gap: 15px;
   padding: 20px;
   background: var(--primary);
   color: white;
+  text-align: center;
+}
+
+.header nav {
+  display: flex;
+  gap: 15px;
 }
 
 .header nav a {
   color: white;
-  margin-left: 15px;
   text-decoration: none;
+  font-size: 14px;
 }
 
-/* HERO */
+/* HERO (Seção Principal) */
 .hero {
   display: flex;
-  justify-content: space-between;
-  padding: 60px;
+  flex-direction: column; /* Texto em cima, imagem/conteúdo embaixo */
+  gap: 30px;
+  padding: 40px 20px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
+  text-align: center;
 }
 
 .hero-text {
-  max-width: 50%;
+  max-width: 100%; /* Ocupa a largura total no mobile */
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 32px; /* Fonte ligeiramente menor para não quebrar no celular */
+  margin-bottom: 15px;
 }
 
+/* BOTÕES (Área de toque otimizada para dedos no celular) */
 .buttons {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column; /* Botões empilhados no mobile facilitam o clique */
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 14px 20px; /* Mais altura para facilitar o toque */
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
 }
 
 .btn-primary {
   background: var(--success);
-  padding: 10px 20px;
   color: white;
-  border-radius: 8px;
-  text-decoration: none;
 }
 
 .btn-secondary {
-  margin-left: 10px;
   color: white;
   border: 1px solid white;
-  padding: 10px 20px;
-  border-radius: 8px;
 }
 
-/* SECTIONS */
+/* SECTIONS GERAIS */
 .section {
-  padding: 60px;
+  padding: 40px 20px;
 }
 
 .section h2 {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 26px;
 }
 
+/* GRID DE CARDS */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column; /* Um card embaixo do outro no celular */
   gap: 20px;
 }
 
 .card {
   background: white;
-  padding: 20px;
+  color: var(--dark); /* Texto escuro dentro do card branco para leitura */
+  padding: 25px;
   border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* FAQ */
+/* FAQ / SEÇÃO CLARA */
 .light {
-  background: white;
+  background: var(--bg-cards);
+  color: var(--dark);
 }
 
 /* FOOTER */
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 25px 20px;
   background: var(--dark);
   color: white;
+  font-size: 14px;
+}
+
+
+/* ==========================================================================
+   3. MEDIA QUERIES (ADAPTAÇÃO PARA TELAS MAIORES)
+   ========================================================================== */
+
+/* Ajustes para Tablets e Desktops pequenos (A partir de 768px) */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row; /* Logo e menu voltam a ficar lado a lado */
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+
+  .header nav a {
+    font-size: 16px;
+    margin-left: 15px;
+  }
+
+  .hero {
+    flex-direction: row; /* Texto e imagem lado a lado */
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px;
+  }
+
+  .hero-text {
+    max-width: 55%;
+    text-align: left; /* Alinhamento à esquerda fica melhor em telas grandes */
+  }
+
+  .hero h1 {
+    font-size: 40px;
+  }
+
+  .buttons {
+    flex-direction: row; /* Botões voltam a ficar lado a lado */
+    gap: 0;
+  }
+
+  .btn-secondary {
+    margin-left: 15px;
+  }
+
+  .section {
+    padding: 60px;
+  }
+
+  .section h2 {
+    text-align: left;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Ativa as duas colunas do Grid */
+    gap: 20px;
+  }
+}
+
+/* Ajustes para Telas Grandes / Desktops (A partir de 1024px) */
+@media (min-width: 1024px) {
+  /* Limita a largura do conteúdo para não esticar infinitamente em monitores ultra-wide */
+  .header, .hero, .section {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  body {
+    /* Cria um efeito de preenchimento nas laterais caso o monitor seja gigante */
+    background-color: var(--dark); 
+  }
 }
