@@ -18,6 +18,19 @@ body {
   color: var(--dark);
 }
 
+/* Alinha o texto e a imagem dentro da div logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Cria um espaçamento automático entre o escudo e o texto */
+}
+
+/* Controla o tamanho do escudo sem distorcer */
+.escudo-logo {
+    height: 28px; /* Defina a altura que preferir para combinar com o tamanho da sua fonte */
+    width: auto;  /* Mantém a proporção original da imagem */
+}
+
 /* HEADER */
 .header {
   display: flex;
