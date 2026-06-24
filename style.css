@@ -134,12 +134,27 @@ img {
   gap: 20px;
 }
 
+/* Garante que no mobile haja um espaçamento entre o texto e a imagem abaixo */
 .card {
-  background: white;
-  color: var(--dark); /* Texto escuro dentro do card branco para leitura */
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card-subtitle {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-content p {
+  margin-bottom: 8px;
+}
+
+/* Centraliza a imagem no mobile */
+.card-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* FAQ / SEÇÃO CLARA */
@@ -182,6 +197,11 @@ footer {
     padding: 60px;
   }
 
+  .hero-image img {
+    width: 250px;
+    height: auto;
+  }
+
   .hero-text {
     max-width: 55%;
     text-align: left; /* Alinhamento à esquerda fica melhor em telas grandes */
@@ -210,9 +230,54 @@ footer {
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Ativa as duas colunas do Grid */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+  .card {
+    flex-direction: row;       /* Coloca texto e imagem lado a lado */
+    align-items: center;       /* Alinha verticalmente ao centro */
+    justify-content: space-between; /* Empurra o texto para a esquerda e imagem para a direita */
     gap: 20px;
+
+    /* Substitui o fundo branco sólido por um branco com 15% de opacidade */
+    background: rgba(255, 255, 255, 0.15); 
+    
+    /* O segredo do vidro: desfoca o que está atrás do card */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Suporte para navegadores Safari */
+    
+    /* Uma borda fina e sutil que parece o corte do vidro refletindo a luz */
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    
+    /* Mantém a cor do texto legível sobre o vidro */
+    color: #ffffff; 
+    
+    /* Seus estilos anteriores de estrutura */
+    padding: 25px;
+    border-radius: 10px;
+    display: flex;   
+        
+    /* Sombra mais suave para combinar com a leveza do vidro */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+
+  } 
+  
+
+  .card-content {
+    flex: 1;                   /* Faz o texto ocupar o máximo de espaço disponível */
+    text-align: left;          /* Garante o alinhamento à esquerda */
   }
+
+  .card-image-wrapper {
+    flex-shrink: 0;            /* Impede que a imagem seja esmagada */
+  }
+
+  .card-img {
+    width: 150px;              /* Ajuste o tamanho ideal da imagem do mockup aqui */
+    height: auto;
+    border-radius: 10px;
+
 }
 
 /* Ajustes para Telas Grandes / Desktops (A partir de 1024px) */
